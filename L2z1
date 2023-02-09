@@ -6,14 +6,24 @@
 # Ответ: 2
 
 
-from random import randint
+import random
 
-tries = int(input("Ввидите число монет на столе: "))
+stack_size = int(input('Введите количество монет: '))
+coins = [random.randint(0,1) for _ in range(stack_size)]
+print(*coins)
 
-mon_coin = []
+coins_0 = 0
+coins_1 = 0
 
-while tries:
-    mon_coin.append(randint(1, 2))
-    tries -= 1
+for i in range(stack_size):
+    if coins[i] == 1:
+        coins_1 += 1
+    else:
+        coins_0 += 1
 
-print('перевернуть орлов - {}, перевернуть решек - {}'.format( mon_coin.count(1), mon_coin.count(2)))
+if coins_1 > coins_0:
+            print('Переверните нолики')
+elif coins_1 == coins_0:
+            print('Переверните любые, одинаково')
+else:
+            print('Переверните единички')
