@@ -1,0 +1,34 @@
+# Задаем длину списка наполненного рандомными числами от 1 до 100.
+# Вводим искомое число X
+# Программа должна вывести в консоль сколько раз встречается в заданном списке искомое число X,
+# которое мы вводим с клавиатуры, либо выводим на экран, максимально близкое ему по значению.
+
+import random
+
+size_list = int(input('Введите размер списка: '))
+
+my_list = []
+for _ in range(size_list):
+    my_list.append(random.randint(0,100))
+
+print(my_list)
+
+number_X = int(input('Введите искомое число: '))
+
+lower = 0
+bigger = 0
+near = []
+count = 0
+
+for num in my_list:
+    if num == number_X:
+        count += 1
+    elif num < number_X and abs(number_X - num) < abs(number_X - lower):
+        lower = num
+    elif num > number_X and abs(number_X - num) < abs(number_X - bigger):
+        bigger = num
+if count > 0:
+    print(f'Число {number_X} встречается в списке {count} раз')
+else:
+    print(f'Ближайшее меньшее число в нашем списке к {number_X} это число {lower} , ближайшее большее число {bigger}')
+
